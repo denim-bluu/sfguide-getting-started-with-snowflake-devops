@@ -23,8 +23,7 @@ CREATE OR REPLACE GIT REPOSITORY quickstart_common.public.quickstart_repo
   ORIGIN = 'https://github.com/denim-bluu/sfguide-getting-started-with-snowflake-devops'; -- INSERT URL OF FORKED REPO HERE
 
 
-CREATE OR ALTER DATABASE QUICKSTART_PROD;
-CREATE OR ALTER DATABASE QUICKSTART_DEV;
+CREATE OR ALTER DATABASE QUICKSTART_{{environment}};
 
 
 -- To monitor data pipeline's completion
@@ -32,16 +31,12 @@ CREATE OR REPLACE NOTIFICATION INTEGRATION email_integration
   TYPE=EMAIL
   ENABLED=TRUE;
 
-USE DATABASE QUICKSTART_PROD;
+USE DATABASE QUICKSTART_{{environment}};
 -- Database level objects
 CREATE OR ALTER SCHEMA bronze;
 CREATE OR ALTER SCHEMA silver;
 CREATE OR ALTER SCHEMA gold;
-USE DATABASE QUICKSTART_DEV;
--- Database level objects
-CREATE OR ALTER SCHEMA bronze;
-CREATE OR ALTER SCHEMA silver;
-CREATE OR ALTER SCHEMA gold;
+
 
 
 -- Schema level objects
